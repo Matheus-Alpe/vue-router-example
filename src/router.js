@@ -11,6 +11,7 @@ Vue.use(VueRouter)
 
 export default new VueRouter({
   mode: 'history',
+  linkExactActiveClass: 'active',
   routes: [
     {
       path: '/contatos',
