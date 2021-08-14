@@ -11,7 +11,7 @@
             />
         </ul>
 
-        <p v-esel>Nenhum contato cadastrado.</p>
+        <p v-else>Nenhum contato cadastrado.</p>
 
 
         <button class="btn btn-secondary mt-4 mb-4" @click="voltar">Voltar</button>
