@@ -3,8 +3,9 @@ import VueRouter from 'vue-router'
 
 
 // Components
-import Contatos from './views/contatos/Contatos.vue'
 import Home from './views/Home.vue'
+import Contatos from './views/contatos/Contatos.vue'
+import ContatoDetalhes from './views/contatos/ContatoDetalhes.vue'
 
 
 Vue.use(VueRouter)
@@ -17,13 +18,17 @@ export default new VueRouter({
 
   routes: [
     {
+      path: '/',
+      component: Home
+    },
+    {
       path: '/contatos',
       component: Contatos
     },
     {
-      path: '/',
-      component: Home
-    }
+      path: '/contatos/:id',
+      component: ContatoDetalhes
+    },
   ]
   
 })
