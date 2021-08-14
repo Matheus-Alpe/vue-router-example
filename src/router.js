@@ -10,8 +10,11 @@ import Home from './views/Home.vue'
 Vue.use(VueRouter)
 
 export default new VueRouter({
+
   mode: 'history',
+
   linkExactActiveClass: 'active',
+
   routes: [
     {
       path: '/contatos',
@@ -22,4 +25,5 @@ export default new VueRouter({
       component: Home
     }
   ]
+  
 })

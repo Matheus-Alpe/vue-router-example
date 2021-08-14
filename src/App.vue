@@ -8,8 +8,8 @@
 
         <div class="container">
 
-            <router-link exact to="/" class="btn btn-info mb-2 mr-2">Home</router-link>
-            <router-link :to="{ path: '/contatos' }" class="btn btn-info mb-2 mr-2">Contatos</router-link>
+            <router-link exact to="/" class="btn btn-info mb-4 mr-2">Home</router-link>
+            <router-link :to="{ path: '/contatos' }" class="btn btn-info mb-4 mr-2">Contatos</router-link>
 
             <router-view></router-view>
 
