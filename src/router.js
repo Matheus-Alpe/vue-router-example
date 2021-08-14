@@ -23,12 +23,12 @@ export default new VueRouter({
     },
     {
       path: '/contatos',
-      component: Contatos
+      component: Contatos,
+      children: [
+        { path: ':id', component: ContatoDetalhes },
+      ]
     },
-    {
-      path: '/contatos/:id',
-      component: ContatoDetalhes
-    },
+    
   ]
   
 })
