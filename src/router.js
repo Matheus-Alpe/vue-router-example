@@ -14,6 +14,10 @@ import Erro404 from './views/Erro404.vue'
 
 Vue.use(VueRouter)
 
+const extrairParamId = route => ({
+  id: +route.params.id // Number(route.params.id)
+})
+
 export default new VueRouter({
 
   mode: 'history',
@@ -32,27 +36,27 @@ export default new VueRouter({
       },
       children: [
         {
-          path: ':id',
+          path: ':id(\\d+)',
           component: ContatoDetalhes,
           name: 'contato',
           // props: true,
           // props: {
           //   id: 10 // fixed value
           // }
-          props: route => ({
-            id: +route.params.id // Number(route.params.id)
-          })
+          props: extrairParamId
         },
         { 
-          path: ':id/editar',
-          alias: ':id/alterar',
+          path: ':id(\\d+)/editar/:opacional?',
+          // path: ':id(\\d+)/editar/:zeroOuMais*',
+          // path: ':id(\\d+)/editar/:umOuMais+',
+          alias: ':id(\\d+)/alterar/:zeroOuMais*',
           components: {
             default: ContatoEditar,
             'contato-detalhes': ContatoDetalhes
           },
           props: {
-            default: true,
-            'contato-detalhes': true
+            default: extrairParamId,
+            'contato-detalhes': extrairParamId
           }
         },
         { path: '', component: ContatosHome, name: 'contatos' },

@@ -12,7 +12,10 @@
 
 <script>
 export default {
-    props: ['id']
+    props: ['id'],
+    created() {
+        console.log('Param:', this.$route.params)
+    }
 }
 </script>
 
