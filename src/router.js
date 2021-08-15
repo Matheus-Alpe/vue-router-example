@@ -103,12 +103,17 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log('beforeEach - Navigation Guard |', 'to:', to.path, '-> from:', from.path)
+  console.log('beforeEach - Navigation Guard | Global |', 'to:', to.path, '-> from:', from.path)
+  next()
+})
+
+router.beforeResolve((to, from, next) => {
+  console.log('beforeResolve - Navigation Guard | Global |', 'to:', to.path, '-> from:', from.path)
   next()
 })
 
 router.afterEach((to, from) => {
-  console.log('afterEach - Navigation Guard |', 'to:', to.path, '-> from:', from.path)
+  console.log('afterEach - Navigation Guard | Global |', 'to:', to.path, '-> from:', from.path)
 })
 
 export default router
