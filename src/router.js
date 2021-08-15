@@ -35,10 +35,13 @@ export default new VueRouter({
           path: ':id',
           component: ContatoDetalhes,
           name: 'contato',
-          props: true,
+          // props: true,
           // props: {
           //   id: 10 // fixed value
           // }
+          props: route => ({
+            id: +route.params.id // Number(route.params.id)
+          })
         },
         { 
           path: ':id/editar',
