@@ -43,6 +43,7 @@ export default new VueRouter({
 
     {
       path: '/home',
+      alias: '/',
       component: Home
     },
 
@@ -51,13 +52,13 @@ export default new VueRouter({
     //   redirect: '/contatos'
     // },
 
-    {
-      path: '/',
-      redirect: (to) => {
-        console.log(to)
-        return { name: 'contatos' }
-      }
-    },
+    // {
+    //   path: '/',
+    //   redirect: (to) => {
+    //     console.log(to)
+    //     return { name: 'contatos' }
+    //   }
+    // },
 
     { // NOT FOUND
       path: '*',
