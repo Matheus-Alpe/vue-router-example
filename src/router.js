@@ -21,15 +21,28 @@ export default new VueRouter({
   routes: [
 
     {
-      path: '/',
+      path: '/home',
       component: Home
+    },
+
+    // {
+    //   path: '/',
+    //   redirect: '/contatos'
+    // },
+
+    {
+      path: '/',
+      redirect: (to) => {
+        console.log(to)
+        return { name: 'contatos' }
+      }
     },
 
     {
       path: '/contatos',
       component: Contatos,
       children: [
-        { path: '', component: ContatosHome },
+        { path: '', component: ContatosHome, name: 'contatos' },
         { path: ':id', component: ContatoDetalhes, name: 'contato' },
         { 
           path: ':id/editar',
