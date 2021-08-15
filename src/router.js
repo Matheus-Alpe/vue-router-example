@@ -50,6 +50,15 @@ const router = new VueRouter({
           // path: ':id(\\d+)/editar/:zeroOuMais*',
           // path: ':id(\\d+)/editar/:umOuMais+',
           alias: ':id(\\d+)/alterar/:zeroOuMais*',
+          beforeEnter: (to, from, next) => {
+            console.log('beforeEnter - Navigation Guard | Route |', 'to:', to.path, '-> from:', from.path)
+            // exemplo de autenticação e redirecionamento
+            // if (to.query.autenticado === 'true') {
+            //   return next()
+            // }
+            // next('/contatos')
+            next()
+          },
           components: {
             default: ContatoEditar,
             'contato-detalhes': ContatoDetalhes
