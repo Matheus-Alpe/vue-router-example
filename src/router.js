@@ -57,7 +57,13 @@ const router = new VueRouter({
             //   return next()
             // }
             // next('/contatos')
-            next()
+
+            next() //continuar
+            // next(true) //continuar ? true : false
+            // next('/contatos') //redirect
+            // next({ path: '/contatos', params: { id: 1 } }) //redirect
+            // next({ name: '/contatos' }) //redirect
+            // next(new Error(`Permissões insuficiente para acessar o recurso "${to.fullPath}"`)) //jogando erros
           },
           components: {
             default: ContatoEditar,
@@ -114,6 +120,10 @@ router.beforeResolve((to, from, next) => {
 
 router.afterEach((to, from) => {
   console.log('afterEach - Navigation Guard | Global |', 'to:', to.path, '-> from:', from.path)
+})
+
+router.onError((erro) => {
+  console.log(erro)
 })
 
 export default router
