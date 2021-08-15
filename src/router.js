@@ -50,6 +50,9 @@ const router = new VueRouter({
           // path: ':id(\\d+)/editar/:zeroOuMais*',
           // path: ':id(\\d+)/editar/:umOuMais+',
           alias: ':id(\\d+)/alterar/:zeroOuMais*',
+          meta: {
+            requerAutenticacao: true
+          },
           beforeEnter: (to, from, next) => {
             console.log('beforeEnter - Navigation Guard | Route |', 'to:', to.path, '-> from:', from.path)
             // exemplo de autenticação e redirecionamento
@@ -110,6 +113,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   console.log('beforeEach - Navigation Guard | Global |', 'to:', to.path, '-> from:', from.path)
+  console.log('Metafield:', to.meta)
   next()
 })
 
