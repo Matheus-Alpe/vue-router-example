@@ -3,7 +3,7 @@
         <h1 class="h3 mb-3 font-weight-normal">Faça seu login</h1>
         <label for="email" class="sr-only">Email</label>
         <input 
-            type="email" 
+            type="text" 
             class="form-control"
             placeholder="Email"
             required
@@ -39,7 +39,7 @@ export default {
 
     methods: {
         entrar() {
-            if (this.usuario.email === 'matttalves@gmail.com' && this.usuario.senha === '1234') {
+            if (this.usuario.email === 'admin' && this.usuario.senha === '1') {
                 EventBus.$emit('autenticar', true)
                 const destino = this.$route.query.redirecionar || '/contatos'
                 this.$router.push(destino)

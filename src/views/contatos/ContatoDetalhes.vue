@@ -1,7 +1,14 @@
 <template>
-    <div>
-        <h3 class="font-weight-light">Detalhes sobre o contato com id: {{ id }}</h3>
-        <div style="height: 200px;"></div>
+    <div v-if="contato">
+        <h3 class="font-weight-light">Nome: {{ contato.nome }}</h3>
+        <p>Email: {{ contato.email }}</p>
+        <button 
+            class="btn btn-secondary mr-2" 
+            @click="$router.back()"
+        >
+            Voltar
+        </button>
+
         <router-link
             id="parametros"
             :to="`/contatos/${id}/editar`"
@@ -13,6 +20,8 @@
 </template>
 
 <script>
+import EventBus from './../../event-bus'
+
 export default {
     props: {
         id: {
@@ -21,8 +30,24 @@ export default {
         }
     },
 
+    data() {
+        return {
+            contato: undefined
+        }
+    },
+
+    // created() {
+    //     this.contato = EventBus.buscarContato(this.id)
+    // },
+
+    beforeRouteEnter(to, from, next) {
+        next((vm) => {
+            vm.contato = EventBus.buscarContato(Number(to.params.id))
+        })
+    },
+
     beforeRouteUpdate(to, from, next) {
-        console.log('beforeRouteUpdate - Navigation Guard | Component |', 'to:', to.path, '-> from:', from.path)
+        this.contato = EventBus.buscarContato(Number(to.params.id))
         next()
     },
 }

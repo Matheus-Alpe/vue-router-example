@@ -107,7 +107,7 @@ const router = new VueRouter({
           },
           props: {
             default: extrairParamId,
-            'contato-detalhes': extrairParamId
+            // 'contato-detalhes': extrairParamId
           }
         },
         { path: '', component: ContatosHome, name: 'contatos' },

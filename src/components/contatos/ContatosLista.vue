@@ -32,6 +32,7 @@
 
 <script>
 import ContatoListaItem from './ContatosListaItem.vue'
+import EventBus from './../../event-bus'
 
 export default {
     components: {
@@ -42,11 +43,7 @@ export default {
 
     data() {
         return {
-            contatos: [
-                { id: 1, nome: 'Matheus Alves', email: 'matttalves@gmail.com' },
-                { id: 2, nome: 'Rosana Fernandes', email: 'rosana@gmail.com' },
-                { id: 3, nome: 'Thiago Laurenir', email: 'thiago@gmail.com' },
-            ]
+            contatos: []
         }
     },
 
@@ -87,7 +84,12 @@ export default {
             })
         }
 
+    },
+
+    created() {
+        this.contatos = EventBus.contatos
     }
+
 }
 </script>
 
