@@ -41,11 +41,13 @@ export default new VueRouter({
     {
       path: '/contatos',
       component: Contatos,
+      alias: ['/meus-contatos', '/lista-de-contatos'],
       children: [
         { path: '', component: ContatosHome, name: 'contatos' },
         { path: ':id', component: ContatoDetalhes, name: 'contato' },
         { 
           path: ':id/editar',
+          alias: ':id/alterar',
           components: {
             default: ContatoEditar,
             'contato-detalhes': ContatoDetalhes
