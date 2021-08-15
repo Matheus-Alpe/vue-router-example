@@ -27,6 +27,37 @@ const router = new VueRouter({
 
   linkExactActiveClass: 'active',
 
+  scrollBehavior(to, _, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    }
+
+    if (to.hash) {
+      return {
+        selector: to.hash,
+        offset: { x: 0, y: 0 }, //offset of element
+      }
+    }
+    return { x: 0, y: 0 }
+
+    // scroll assíncrono
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     if (savedPosition) {
+    //       return resolve(savedPosition)
+    //     }
+    
+    //     if (to.hash) {
+    //       return resolve({
+    //         selector: to.hash,
+    //         offset: { x: 0, y: 0 }, //offset of element
+    //       })
+    //     }
+    //     resolve({ x: 0, y: 0 })
+    //   }, 3000)
+    // })
+  },
+
   routes: [
     
     { // CONTATOS
