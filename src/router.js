@@ -27,7 +27,12 @@ export default new VueRouter({
       component: Contatos,
       alias: ['/meus-contatos', '/lista-de-contatos'],
       children: [
-        { path: ':id', component: ContatoDetalhes, name: 'contato' },
+        {
+          path: ':id',
+          component: ContatoDetalhes,
+          name: 'contato',
+          props: true
+        },
         { 
           path: ':id/editar',
           alias: ':id/alterar',
@@ -35,6 +40,10 @@ export default new VueRouter({
             default: ContatoEditar,
             'contato-detalhes': ContatoDetalhes
           },
+          props: {
+            default: true,
+            'contato-detalhes': true
+          }
         },
         { path: '', component: ContatosHome, name: 'contatos' },
         { path: '*', component: Erro404Contatos }, // NOT FOUND

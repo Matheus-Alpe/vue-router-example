@@ -12,23 +12,7 @@
 
 <script>
 export default {
-    data() {
-        return {
-            id: this.$route.params.id
-        }
-    },
-
-    // watch: {
-    //     '$route'(to, from) {
-    //         console.log(from)
-    //         this.id = to.params.id
-    //     }
-    // },
-
-    beforeRouteUpdate(to, from, next) {
-        this.id = to.params.id
-        next()
-    }
+    props: ['id']
 }
 </script>
 
