@@ -28,6 +28,12 @@ export default {
         //     })
         // }
         // next('/contatos')
+    },
+
+    beforeRouteLeave(to, from, next) {
+        console.log('beforeRouteLeave - Navigation Guard | Component |', 'to:', to.path, '-> from:', from.path)
+        const confirmar = window.confirm('Deseja realmente sair?')
+        next(confirmar)
     }
 }
 </script>
