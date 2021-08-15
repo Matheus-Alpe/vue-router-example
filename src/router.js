@@ -1,17 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-
-// Components
-import Home from './views/Home.vue'
-import Login from './views/login/Login.vue'
-import Contatos from './views/contatos/Contatos.vue'
-import ContatosHome from './views/contatos/ContatosHome.vue'
-import ContatoDetalhes from './views/contatos/ContatoDetalhes.vue'
-import ContatoEditar from './views/contatos/ContatoEditar.vue'
-import Erro404Contatos from './views/contatos/Erro404Contatos.vue'
-import Erro404 from './views/Erro404.vue'
-
+// Lazy Components
+const Login = () => import('./views/login/Login.vue')
+const Home = () => import('./views/Home.vue')
+//webpackChunkName agrupa os pacotes em um só
+const Contatos = () => import(/* webpackChunkName: "Contatos"*/ './views/contatos/Contatos.vue')
+const ContatosHome = () => import(/* webpackChunkName: "Contatos"*/ './views/contatos/ContatosHome.vue')
+const ContatoDetalhes = () => import(/* webpackChunkName: "Contatos"*/ './views/contatos/ContatoDetalhes.vue')
+const ContatoEditar = () => import(/* webpackChunkName: "Contatos"*/ './views/contatos/ContatoEditar.vue')
+const Erro404Contatos = () => import('./views/contatos/Erro404Contatos.vue')
+const Erro404 = () => import('./views/Erro404.vue')
 
 import EventBus from './event-bus'
 
