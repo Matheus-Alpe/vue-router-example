@@ -8,6 +8,8 @@ import Contatos from './views/contatos/Contatos.vue'
 import ContatosHome from './views/contatos/ContatosHome.vue'
 import ContatoDetalhes from './views/contatos/ContatoDetalhes.vue'
 import ContatoEditar from './views/contatos/ContatoEditar.vue'
+import Erro404Contatos from './views/contatos/Erro404Contatos.vue'
+import Erro404 from './views/Erro404.vue'
 
 
 Vue.use(VueRouter)
@@ -19,6 +21,25 @@ export default new VueRouter({
   linkExactActiveClass: 'active',
 
   routes: [
+    
+    {
+      path: '/contatos',
+      component: Contatos,
+      alias: ['/meus-contatos', '/lista-de-contatos'],
+      children: [
+        { path: ':id', component: ContatoDetalhes, name: 'contato' },
+        { 
+          path: ':id/editar',
+          alias: ':id/alterar',
+          components: {
+            default: ContatoEditar,
+            'contato-detalhes': ContatoDetalhes
+          },
+        },
+        { path: '', component: ContatosHome, name: 'contatos' },
+        { path: '*', component: Erro404Contatos }, // NOT FOUND
+      ]
+    },
 
     {
       path: '/home',
@@ -38,23 +59,11 @@ export default new VueRouter({
       }
     },
 
-    {
-      path: '/contatos',
-      component: Contatos,
-      alias: ['/meus-contatos', '/lista-de-contatos'],
-      children: [
-        { path: '', component: ContatosHome, name: 'contatos' },
-        { path: ':id', component: ContatoDetalhes, name: 'contato' },
-        { 
-          path: ':id/editar',
-          alias: ':id/alterar',
-          components: {
-            default: ContatoEditar,
-            'contato-detalhes': ContatoDetalhes
-          },
-        },
-      ]
+    { // NOT FOUND
+      path: '*',
+      component: Erro404
     },
+
 
   ]
   
