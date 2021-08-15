@@ -17,6 +17,11 @@ export default {
             type: Number,
             required: true
         }
+    },
+
+    beforeRouteUpdate(to, from, next) {
+        console.log('beforeRouteUpdate - Navigation Guard | Component |', 'to:', to.path, '-> from:', from.path)
+        next()
     }
 }
 </script>
