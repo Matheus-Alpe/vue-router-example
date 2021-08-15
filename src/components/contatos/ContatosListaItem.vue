@@ -8,6 +8,12 @@
         >
             Detalhes
         </router-link>
+        <!-- <button 
+            class="btn btn-info btn-sm float-right"
+            @click="verDetalhes"
+        >
+            Detalhes
+        </button> -->
         
     </li>
 </template>
@@ -18,6 +24,14 @@ export default {
         contato: {
             type: Object,
             required: true
+        }
+    },
+
+    methods: {
+        verDetalhes() {
+            // this.$router.push(`/contatos/${this.contato.id}`)
+            // this.$router.push({ path: `/contatos/${this.contato.id}`})
+            // this.$router.push({ name: 'contato', params: { id: this.contato.id }})
         }
     }
 }
