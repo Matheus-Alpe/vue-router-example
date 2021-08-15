@@ -18,7 +18,7 @@ const extrairParamId = route => ({
   id: +route.params.id // Number(route.params.id)
 })
 
-export default new VueRouter({
+const router = new VueRouter({
 
   mode: 'history',
 
@@ -92,3 +92,14 @@ export default new VueRouter({
   ]
   
 })
+
+router.beforeEach((to, from, next) => {
+  console.log('beforeEach - Navigation Guard |', 'to:', to.path, '-> from:', from.path)
+  next()
+})
+
+router.afterEach((to, from) => {
+  console.log('afterEach - Navigation Guard |', 'to:', to.path, '-> from:', from.path)
+})
+
+export default router
