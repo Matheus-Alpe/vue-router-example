@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 
 // Components
 import Home from './views/Home.vue'
+import Login from './views/login/Login.vue'
 import Contatos from './views/contatos/Contatos.vue'
 import ContatosHome from './views/contatos/ContatosHome.vue'
 import ContatoDetalhes from './views/contatos/ContatoDetalhes.vue'
@@ -11,6 +12,8 @@ import ContatoEditar from './views/contatos/ContatoEditar.vue'
 import Erro404Contatos from './views/contatos/Erro404Contatos.vue'
 import Erro404 from './views/Erro404.vue'
 
+
+import EventBus from './event-bus'
 
 Vue.use(VueRouter)
 
@@ -26,7 +29,7 @@ const router = new VueRouter({
 
   routes: [
     
-    {
+    { // CONTATOS
       path: '/contatos',
       component: Contatos,
       alias: ['/meus-contatos', '/lista-de-contatos'],
@@ -82,7 +85,12 @@ const router = new VueRouter({
       ]
     },
 
-    {
+    { // LOGIN
+      path: '/login',
+      component: Login
+    },
+
+    { // HOME
       path: '/home',
       alias: '/',
       component: Home
@@ -114,6 +122,20 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   console.log('beforeEach - Navigation Guard | Global |', 'to:', to.path, '-> from:', from.path)
   console.log('Metafield:', to.meta)
+
+  const estaAutenticado = EventBus.autenticado
+  if (to.matched.some(rota => rota.meta.requerAutenticacao)) {
+    if (!estaAutenticado) {
+      next({
+        path: '/login',
+        query: {
+          redirecionar: to.fullPath
+        }
+      })
+      return
+    }
+  }
+
   next()
 })
 
